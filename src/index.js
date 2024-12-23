@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     sumButton.addEventListener('click', function(){
       const text = textArea.value
-      const count = calculator.characterCount(text);  
+      const count = calculator.Add(text);  
       showCharCount.textContent = `Result: ${count}`
     })
   });
