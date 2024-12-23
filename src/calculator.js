@@ -16,7 +16,8 @@ const calculator = {
     if (numbers.length === 2) {
       return numbers[0] + numbers [1];
     }
-  }
+
+}
 }
 
 export default calculator;
