@@ -1,25 +1,20 @@
 const calculator = {
-  //characterCount: (text) => {
-    //return text.length;
-  //},
   Add(text) {
-    // check if the string is empty
+    // Empty string check
     if (text === '') {
       return 0;
     }
-    // separates the string at new line into an array, puts it back together, splits it at commas, converts each string into numbers
+    // Add support for custom delimiter
+    if (text.startsWith('//')) {
+      const delimiter = text[2];
+      const numbersString = text.slice(4);
+      const numbers = numbersString.split(delimiter).map(Number);
+      return numbers.reduce((acc, curr) => acc + curr, 0);
+
+    }
+    // Tasks simplified
     const numbers = text.split('\n').join(',').split(',').map(Number);
-    // sum (if there's only one number, return that number...if there are two, return the sum)
-    if (numbers.length === 1) {
-      return numbers[0];
-    }
-    if (numbers.length === 2) {
-      return numbers[0] + numbers [1];
-    }
-    let sum = function(n1, n2) {
-      return n1 + n2;
-    }
-    return numbers.reduce(sum);
+    return numbers.reduce((acc, curr) => acc + curr, 0);
 
 }
 }
