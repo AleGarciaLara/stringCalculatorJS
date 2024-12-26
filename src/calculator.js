@@ -7,8 +7,8 @@ const calculator = {
     if (text === '') {
       return 0;
     }
-    // divide the string into numbers   // turn the numbers into integers
-    const numbers = text.split(',').map(Number);
+    // separates the string at new line into an array, puts it back together, splits it at commas, converts each string into numbers
+    const numbers = text.split('\n').join(',').split(',').map(Number);
     // sum (if there's only one number, return that number...if there are two, return the sum)
     if (numbers.length === 1) {
       return numbers[0];
