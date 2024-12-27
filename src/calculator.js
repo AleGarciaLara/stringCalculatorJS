@@ -19,6 +19,12 @@ const calculator = {
     if (negatives.length > 0) {
       throw `Exception: negatives not allowed: ${negatives.join(',')}`;
     }
+    //Ignore numbers greater than 1000
+    const giantNums = numbers.filter((num) => num > 1000);
+    const validNums = numbers.filter((num) => num <= 1000);
+    if (giantNums.length > 0) {
+      return validNums.reduce((acc, curr) => acc + curr, 0);
+    }
     //Return the sum
     return numbers.reduce((acc, curr) => acc + curr, 0);
 }
