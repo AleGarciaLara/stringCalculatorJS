@@ -5,26 +5,35 @@ const calculator = {
       return 0;
     }
     let numbers;  // Declare the variable so I can use it later
-    // Add support for custom delimiter
+    
+    // Support delimiters of any length 
     if (text.startsWith('//')) {
-      const delimiter = text[2]; 
-      const numbersString = text.slice(4);
-      const numbers = numbersString.split(delimiter).map(Number);
-      return numbers.reduce((acc, curr) => acc + curr, 0);
+      let delimiter; // They have to be variables 
+      let numbersString; // They have to be variables 
+
+      if (text[2] === '[') {
+        const start = text.indexOf('[') + 1; 
+        const end = text.indexOf(']');
+        delimiter = text.slice(start, end);
+        numbersString = text.slice(end + 2);
+      } else { 
+        delimiter = text[2];
+        numbersString = text.slice(4);
+      }
+      numbers = numbersString.split(delimiter).map(Number);
     } else {
-      numbers = text.split(',').map(Number); //Split the string and turn it into an array of numbers
+      //Split the string and turn it into an array of numbers
+      numbers = text.split('\n').join(',').split(',').map(Number); 
     }
     //Create an array of negative numbers and thrown an exception 
     const negatives = numbers.filter((num) => num < 0); 
     if (negatives.length > 0) {
-      throw `Exception: negatives not allowed: ${negatives.join(',')}`;
+      throw `Exception! Negatives are not allowed: ${negatives.join(',')}`;
     }
-    //Ignore numbers greater than 1000
-    const giantNums = numbers.filter((num) => num > 1000);
+    //Ignore numbers greater than 1000 (optimized)
     const validNums = numbers.filter((num) => num <= 1000);
-    if (giantNums.length > 0) {
-      return validNums.reduce((acc, curr) => acc + curr, 0);
-    }
+    return validNums.reduce((acc, curr) => acc + curr, 0);
+
     //Return the sum
     return numbers.reduce((acc, curr) => acc + curr, 0);
 }
