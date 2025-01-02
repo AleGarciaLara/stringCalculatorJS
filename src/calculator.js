@@ -8,19 +8,36 @@ const calculator = {
     
     // Support delimiters of any length 
     if (text.startsWith('//')) {
-      let delimiter; // They have to be variables 
+      let delimiters = []; // I need an array because they can be more than one 
       let numbersString; // They have to be variables 
 
       if (text[2] === '[') {
-        const start = text.indexOf('[') + 1; 
-        const end = text.indexOf(']');
-        delimiter = text.slice(start, end);
-        numbersString = text.slice(end + 2);
+        //Find the 'delimiter' section until \n
+        const delimiterSection = text.slice(2, text.indexOf('\n'));
+        //Find the content between the []
+        let start = delimiterSection.indexOf('[');
+        while(start !== -1) {
+          const end = delimiterSection.indexOf(']', start);
+          const delimiter = delimiterSection.slice(start + 1, end);
+          delimiters.push(delimiter);
+          start = delimiterSection.indexOf('[', end);
+        }
+        //Get the numbers after \n 
+        numbersString = text.slice(text.indexOf('\n') + 1);
+
+        //Replace delimiters with ',' 
+        delimiters.forEach((delimiter) => {
+          numbersString = numbersString.split(delimiter).join(',');
+        });
+
+        numbers = numbersString.split(',').map(Number);
+
       } else { 
-        delimiter = text[2];
+        //Single delimiter logic
+        const delimiter = text[2];
         numbersString = text.slice(4);
+        numbers = numbersString.split(delimiter).map(Number);
       }
-      numbers = numbersString.split(delimiter).map(Number);
     } else {
       //Split the string and turn it into an array of numbers
       numbers = text.split('\n').join(',').split(',').map(Number); 
@@ -32,10 +49,10 @@ const calculator = {
     }
     //Ignore numbers greater than 1000 (optimized)
     const validNums = numbers.filter((num) => num <= 1000);
+    //Return the sum
     return validNums.reduce((acc, curr) => acc + curr, 0);
 
-    //Return the sum
-    return numbers.reduce((acc, curr) => acc + curr, 0);
+    
 }
 
 }
