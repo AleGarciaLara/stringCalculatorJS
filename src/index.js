@@ -1,7 +1,5 @@
 import calculator from './calculator.js';
 
-console.log("Holi");
-
 document.addEventListener("DOMContentLoaded", function(){
   const textArea = document.querySelector('textarea[name="user-input"]');
   const showCharCount = document.querySelector('p[name="result"]');

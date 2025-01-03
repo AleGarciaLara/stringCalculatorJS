@@ -16,6 +16,7 @@ const calculator = {
         const delimiterSection = text.slice(2, text.indexOf('\n'));
         //Find the content between the []
         let start = delimiterSection.indexOf('[');
+        
         while(start !== -1) {
           const end = delimiterSection.indexOf(']', start);
           const delimiter = delimiterSection.slice(start + 1, end);
@@ -29,18 +30,18 @@ const calculator = {
         delimiters.forEach((delimiter) => {
           numbersString = numbersString.split(delimiter).join(',');
         });
-
-        numbers = numbersString.split(',').map(Number);
+        //Split the string and turn it into an array of numbers (optimized)
+        numbers = numbersString.split('\n').join(',').split('\\n').join(',').split(',').map(Number);
 
       } else { 
-        //Single delimiter logic
+        //Single delimiter logic (optimized)
         const delimiter = text[2];
         numbersString = text.slice(4);
-        numbers = numbersString.split(delimiter).map(Number);
+        numbers = numbersString.split('\n').join(',').split('\\n').join(',').split(delimiter).map(Number);
       }
     } else {
-      //Split the string and turn it into an array of numbers
-      numbers = text.split('\n').join(',').split(',').map(Number); 
+      //Split the string and turn it into an array of numbers (optimized)
+      numbers = text.split('\n').join(',').split('\\n').join(',').split(',').map(Number); 
     }
     //Create an array of negative numbers and thrown an exception 
     const negatives = numbers.filter((num) => num < 0); 
