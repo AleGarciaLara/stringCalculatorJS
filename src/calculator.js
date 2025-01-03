@@ -4,19 +4,57 @@ const calculator = {
     if (text === '') {
       return 0;
     }
-    // Add support for custom delimiter
+    let numbers;  // Declare the variable so I can use it later
+    
+    // Support delimiters of any length 
     if (text.startsWith('//')) {
-      const delimiter = text[2];
-      const numbersString = text.slice(4);
-      const numbers = numbersString.split(delimiter).map(Number);
-      return numbers.reduce((acc, curr) => acc + curr, 0);
+      let delimiters = []; // I need an array because they can be more than one 
+      let numbersString; // They have to be variables 
 
+      if (text[2] === '[') {
+        //Find the 'delimiter' section until \n
+        const delimiterSection = text.slice(2, text.indexOf('\n'));
+        //Find the content between the []
+        let start = delimiterSection.indexOf('[');
+        
+        while(start !== -1) {
+          const end = delimiterSection.indexOf(']', start);
+          const delimiter = delimiterSection.slice(start + 1, end);
+          delimiters.push(delimiter);
+          start = delimiterSection.indexOf('[', end);
+        }
+        //Get the numbers after \n 
+        numbersString = text.slice(text.indexOf('\n') + 1);
+
+        //Replace delimiters with ',' 
+        delimiters.forEach((delimiter) => {
+          numbersString = numbersString.split(delimiter).join(',');
+        });
+        //Split the string and turn it into an array of numbers (optimized)
+        numbers = numbersString.split('\n').join(',').split('\\n').join(',').split(',').map(Number);
+
+      } else { 
+        //Single delimiter logic (optimized)
+        const delimiter = text[2];
+        numbersString = text.slice(4);
+        numbers = numbersString.split('\n').join(',').split('\\n').join(',').split(delimiter).map(Number);
+      }
+    } else {
+      //Split the string and turn it into an array of numbers (optimized)
+      numbers = text.split('\n').join(',').split('\\n').join(',').split(',').map(Number); 
     }
-    // Tasks simplified
-    const numbers = text.split('\n').join(',').split(',').map(Number);
-    return numbers.reduce((acc, curr) => acc + curr, 0);
+    //Create an array of negative numbers and thrown an exception 
+    const negatives = numbers.filter((num) => num < 0); 
+    if (negatives.length > 0) {
+      throw `Exception! Negatives are not allowed: ${negatives.join(',')}`;
+    }
+    //Ignore numbers greater than 1000 (optimized)
+    const validNums = numbers.filter((num) => num <= 1000);
+    //Return the sum
+    return validNums.reduce((acc, curr) => acc + curr, 0);
+
+    
+}
 
 }
-}
-
 export default calculator;

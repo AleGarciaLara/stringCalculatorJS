@@ -11,11 +11,39 @@
     <h1>String calculator</h1>
   </header>
   <section>
-    <h2>Write two numbers separated by a comma:</h2>
-    <textarea placeholder="(e.g. 1,2)" name="user-input"></textarea>
-    <button id="sum">+</button>
-    <p name="result">Result:</p>
+    <h2 class="description">Add numbers effortlessly with our flexible calculator!</h2>
   </section>
+  <div class="sectionsContainer">
+    <section class="first">
+      <h2>Enter Numbers:</h2>
+      <p>Separate numbers with commas or newlines.</p>
+      <p>Example: 1,2\n3 → Result: 6</p>
+    </section>
+    <section class="second">
+      <h2>Custom Delimiters:</h2>
+      <p>Use your own delimiter in the format: //[delimiter]\n.</p>
+      <p>Example: //[;]\n1;2 → Result: 3</p>
+    </section>
+    <section class="third">
+      <h2>Multiple Delimiters:</h2>
+      <p>Add multiple delimiters in the format: //[delim1][delim2]\n.</p>
+      <p>Example: //[*][%]\n1*2%3 → Result: 6</p>
+    </section>
+    <section class="fourth">
+      <h2>Special rules:</h2>
+      <p>- Numbers > 1000 are ignored.</p>
+      <p>Example: 2,1001 → Result: 2</p>
+      <p>- Negative numbers throw an exception.</p>
+      <p>Example: 1,-2,-3 → Exception: Negatives not allowed: -2, -3</p>
+    </section>
+  </div>
+  <div class="textAndButton">
+    <section>
+      <textarea placeholder="(e.g. 1,2)" name="user-input"></textarea>
+      <button id="sum">+</button>
+      <p name="result" id="result">Result:</p>
+    </section>
+  </div>
   <script src="index.js" type="module"></script>
 </body>
 </html>

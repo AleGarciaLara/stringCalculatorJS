@@ -1,13 +1,142 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #dce1de;
+  background-color: #F2F2F2;
 }
-textarea {
+body {
+  display: flex;
+  flex-direction: column;
+}
+.sectionsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 15px;
+}
+
+.first {
   border-radius: 5px;
   border-color: black;
-  background-color: gray;
+  border: 1px solid #555;
+  background-color: #333333;
+  margin: 5px;
+  padding: 3px;
+}
+.first h2 {
+  background-color: #333333;
+  color: #F2F2F2; 
+}
+.first p {
+  background-color: #333333;
+  color: #F2F2F2;
+}
+
+.second {
+  border-radius: 5px;
+  border-color: black;
+  border: 1px solid #555;
+  background-color: #333333;
+  margin: 5px;
+  padding: 3px;
+}
+.second h2 {
+  background-color: #333333;
+  color: #F2F2F2; 
+}
+.second p {
+  background-color: #333333;
+  color: #F2F2F2;
+}
+
+.third {
+  border-radius: 5px;
+  border-color: black;
+  border: 1px solid #555;
+  background-color: #333333;
+  margin: 5px;
+  padding: 3px;
+}
+.third h2 {
+  background-color: #333333;
+  color: #F2F2F2; 
+}
+.third p {
+  background-color: #333333;
+  color: #F2F2F2;
+}
+
+.fourth {
+  border-radius: 5px;
+  border-color: black;
+  border: 1px solid #555;
+  background-color: #333333;
+  margin: 5px;
+  padding: 3px;
+}
+.fourth h2 {
+  background-color: #333333;
+  color: #F2F2F2; 
+}
+.fourth p {
+  background-color: #333333;
+  color: #F2F2F2;
+}
+
+.textAndButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
+}
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: #b44819;
+}
+h2 {
+  font-size: 1.3rem;
+}
+p {
+  font-size: 1rem;
+  margin: 5px;
+}
+
+.description {
+  margin-left: 23px;
+}
+textarea {
+  width: 20rem;
+  border-radius: 5px;
+  border-color: #4A403A;
+  background-color: #F2F2F2;
+  color: #4A403A;
+  padding: 8px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+}
+#result {
+  font-size: 1.5rem;
+  color: #555;
 }
 #sum {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #FDF6E3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5rem;
   border-radius: 5px;
-  background-color: #6da0b6;
+  border: 1px solid #555;
+  background-color: #333333;
+  padding: 5px;
+  margin: 5px;
+  margin-top: 17px;
+  cursor: pointer;
+  float: right;
 }
